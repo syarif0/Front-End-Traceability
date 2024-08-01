@@ -17,7 +17,7 @@ function Generate() {
       const { data: latestKerat, error: retrievalError } = await supabase
         .from("Kerat")
         .select("ID_Kerat")
-        .order("ID_Kerat", { ascending: false }) // Assuming ID_Kerat is stored as a string
+        .order("ID_Kerat", { ascending: false })
         .limit(1);
 
       if (retrievalError) {
@@ -45,7 +45,7 @@ function Generate() {
         return;
       }
 
-      // Generate QR code (using newIdKerat directly)
+      // Generate QR code
       QRCode.toDataURL(newIdKerat, {
         width: 256,
         height: 256,
