@@ -5,8 +5,8 @@ import DatePicker from 'react-datepicker';
 import 'react-datepicker/dist/react-datepicker.css';
 import styles from "../styles/Home.module.css";
 
-const supabaseUrl = 'https://gauxhtapvigvxlbsjmbv.supabase.co';
-const supabaseKey = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImdhdXhodGFwdmlndnhsYnNqbWJ2Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3MTcwNzMyMDEsImV4cCI6MjAzMjY0OTIwMX0.HKu0bu4807rVC7R53IMdZLwkTHy2DX1LHkwCZpg7PVI';
+const supabaseUrl = 'https://hosturl.supabase.co';
+const supabaseKey = 'key';
 const supabase = createClient(supabaseUrl, supabaseKey);
 
 function Scan() {
