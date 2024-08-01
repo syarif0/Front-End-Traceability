@@ -51,7 +51,7 @@ function Scan() {
         setPalletOptions(palletResponse.data.map((p) => ({ value: p.ID_Pallet, label: p.ID_Pallet })));
         setOvenOptions(ovenResponse.data.map((o) => ({ value: o.ID_Oven, label: o.ID_Oven })));
 
-        // Update bahanBaku with the fetched data (no modifications needed here)
+        // Update bahanBaku with the fetched data
         setBahanBaku(bahanBakuResponse.data); 
 
       } catch (err) {
@@ -68,7 +68,7 @@ function Scan() {
     ...new Set(bahanBaku.map((bahan) => bahan.Nama_Bahan_Baku)),
   ].map((nama) => ({ value: nama, label: nama }));
 
-  // Create options for Supplier dropdown (all suppliers)
+  // Create options for Supplier dropdown
   const allSupplierOptions = bahanBaku.map((bahan) => ({
     value: bahan.Supplier.ID_Supplier,
     label: bahan.Supplier.Nama_Supplier,
@@ -229,12 +229,12 @@ function Scan() {
         .from('Komposisi_Mixing')
         .update({ Komposisi_Terbaru: false })
         .eq('Komposisi_Terbaru', true)
-        .eq('ID_Bahan_Baku', selectedBahanBakuID); // Now you can use selectedBahanBakuID
+        .eq('ID_Bahan_Baku', selectedBahanBakuID); 
 
-      // 3. Generate ID_Bahan_Baku (using the existing function)
+      // 3. Generate ID_Bahan_Baku
       const idBahanBaku = generateBahanBakuID(selectedBahanBaku, selectedSupplier);
 
-      // 4. Generate ID_Komposisi (using the existing function)
+      // 4. Generate ID_Komposisi
       const idKomposisi = await generateKomposisiID(idBahanBaku); 
 
       // 5. Create the new Komposisi_Mixing 
@@ -264,7 +264,7 @@ function Scan() {
       // Get ID_Kerat from the scanned QR code
       const ID_Kerat = scanResult;
 
-      // 1. Validate ID_Kerat format (using regular expression)
+      // 1. Validate ID_Kerat format
       if (!/^K\d{3}$/.test(ID_Kerat)) { // Update regex for "K001" format
         setError('Please scan a valid QR code (format: K###).'); 
         return;
@@ -481,7 +481,7 @@ function Scan() {
       ]);
 
       if (inkubasiError) {
-        // Handle the error, potentially check for a duplicate key violation
+        // Handle the error, check for a duplicate key violation
         if (inkubasiError.code === '23505') { // Unique violation in PostgreSQL
             setError('A batch is already assigned to this location in Inkubasi.');
             return;
@@ -598,7 +598,7 @@ function Scan() {
         return;
       }
   
-      // 2. Generate ID_Segmen for Kumbung (using corrected generateIDSegmen)
+      // 2. Generate ID_Segmen for Kumbung
       const idSegmen = generateIDSegmen(
         `kumbung/${Nomor_Kumbung}`,
         parseInt(nomorRak, 10),
